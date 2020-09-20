@@ -1,0 +1,88 @@
+% if the existence of the optimal parameters is guaranteed one could find the optimal initial paramers k_x0 and k_r0
+p = 2
+case_ = 1;
+k_r0 = 15;
+k_x0 = [-15; -5];
+gamma_x = 100*[5; 10];
+gamma_r = 20;
+% optimal param = [1.3838, 0.2147];
+
+p = 2
+case_ = 1;
+k_r0 = 15;
+k_x0 = [-14; 1];
+gamma_x = 20*[5; 10];
+gamma_r = 5;
+optimal param = [1.178, 0.23]; 
+
+% make comparison of mrac with traditional fitting methods 
+
+p = 2
+case_ = 2;
+k_r0 = 15;
+k_x0 = [-14; 1];
+gamma_x = 20*[5; 10];
+gamma_r = 5;
+optimal param = [2.25, 0.72];
+
+p = 2
+case_ = 2;
+k_r0 = 15/100;
+k_x0 = [-14; 1]/100;
+gamma_x = 20*[5; 10]/100;
+gamma_r = 5/100;
+mrac_func = @models.musc_mrac_model;
+optimal_param = [2.04, 0.6168];
+
+p = 2
+case_ = 3;
+k_r0 = 15/100;
+k_x0 = [-14; 1]/100;
+gamma_x = 20*[5; 10]/100;
+gamma_r = 5/100;
+mrac_func = @models.mrac_model;
+optimal_param = [1.88, 0.54]
+
+
+p = 2
+case_ = 3;
+k_r0 = 15/100;
+k_x0 = [-14; 1]/100;
+gamma_x0 = 20*[5; 10]/10;
+gamma_r0 = 5/10;
+mrac_func = @models.mrac_model;
+omega_c0 = 3;
+delay_0 = 0.3;
+params_0 = [omega_c0; delay_0; gamma_x0; gamma_r0];
+optimal_param = [1.881015423792848;0.546304199542271;10.324599453656703;20.137173845920632;5.678194422366414];
+
+
+[axis_data_1, axis_data_2] = preprocessing.get_mean_response(3, 3);
+case_ = 3;
+k_r0 = 15/100;
+k_x0 = [-14; 1]/100;
+gamma_x0 = 20*[5; 10]/100;
+gamma_r0 = 5/10;
+mrac_func = @models.mrac_model_lr;
+omega_c0 = 3;
+delay_0 = 0.3;
+params_0 = [omega_c0; delay_0; gamma_x0; gamma_r0];
+lb = [0, 0.2, 0, 0, 0];
+up = [5, 0.8, 10, 10, 2];
+params_0n = params_0./up';
+optimal_param_n =  [ 0.1317; 0.8301; 0.3145; 0.1260; 0.4585]
+
+
+case_ = 3;
+k_r0 = 15/100;
+k_x0 = [-14; 1]/100;
+gamma_x0 = 20*[5; 10]/100;
+gamma_r0 = 5/10;
+mrac_func = @models.mrac_model_lr_init;
+omega_c0 = 3;
+delay_0 = 0.3;
+params_0 = [-k_x0(1); k_x0(2); k_r0; omega_c0; delay_0; gamma_x0; gamma_r0];
+lb = [0, 0, 0, 0, 0.2, 0, 0, 0];
+up = [0.3, 0.1, 0.3, 5, 0.8, 10, 10, 2];
+params_0n = params_0./up';
+optimal_param = [0.4381, 0.0067, 0.3902, 0.1423, 0.7643, 0.3966, 0.0748, 0.0953];

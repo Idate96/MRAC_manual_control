@@ -5,7 +5,7 @@ function y_dot = peter_plant(case_, t, u, y_prev)
         G = -100;
     % case 2: second to first order transition
     elseif case_ == 2 
-        M = 91;
+        M = 0;
         G = 100;
     elseif case_ == 3    
         M = 50;
@@ -31,5 +31,3 @@ function y_dot = peter_plant(case_, t, u, y_prev)
     B = [0; k_c];
     y_dot = A*y_prev + B*u;
 end
-
-

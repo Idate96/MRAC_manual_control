@@ -1,1 +1,1 @@
-for i = 4:9    tools.plot_pilot(i);end
+%% plot compensatory response pilot_id = 3;condition_id = 3;tools.plot_optimal_mrac(pilot_id, condition_id, 'opt_lr_init_comp.mat')

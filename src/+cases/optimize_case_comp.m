@@ -5,22 +5,20 @@ function optimize_case_comp(pilot_id, condition_id)
     % initial conditions for MRAC
     % lot of care needed to select the starting conditions
     assignin('base', 'case_', condition_id)
-    k_x0 = [10; 0]/100;
-    P_0 = [1, 2];
-    gamma_x0 = 20*[5; 10]/100;
-    model_func = @models.mrac_model_lr_init_low_pass_comp;
-    omega_c0 = 3;
+    k_x0 = [9; 3]/100;
+    gamma_x0 = [1; 1];
+    model_func = @models.mrac_model_e2y;
+    omega_c0 = 2;
     delay_0 = 0.3;
-    params_0 = [k_x0(1); k_x0(2); P_0'; omega_c0; delay_0; gamma_x0];
+    params_0 = [k_x0; omega_c0; delay_0; gamma_x0];
 
-    lb = [0, 0, 0.5, 0.5, 0, 0.2, 0, 0];
-    up = [0.3, 0.1, 2, 5, 5, 0.8, 10, 10];
+    lb = [.05, 0, 0.5, 0.2, 0.5, 0.5];
+    up = [.30, 0.1, 5, 0.6, 20, 10];
     params_0n = params_0./up';
     %%
     % sim
-    find_mse_func = @(model_params_norm) fitting.find_mse_mrac(axis_data_1.y, model_func, model_params_norm, up);
-    optimal_param = fitting.fit_mrac_model_init(axis_data_1.r, find_mse_func, params_0n, lb);
-    optimal_param(1) = -optimal_param(1);
+    find_mse_func = @(model_params_norm) fitting.find_mse_mrac_comp(axis_data_1.y, model_func, model_params_norm, up);
+    optimal_param = fitting.fit_mrac_model_comp(axis_data_1.r, find_mse_func, params_0n, lb./up);
     optimal_param = optimal_param .* up';
     assignin('base', 'optimal_param', optimal_param);
 %     % 1.178, 0.23

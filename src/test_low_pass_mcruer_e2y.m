@@ -1,7 +1,7 @@
 time = linspace(0, 89.99, 90000);
-k_x0 = [0.0183; 0.1];
+k_x0 = [0.035; 0.08];
 P_0 = [1.5; 3.5];
-gamma_x0 = [1; 1]/2;
+gamma_x0 = [2; 1];
 omega_c0 = 3;
 delay_0 = 0.3;
 params = [k_x0; P_0; omega_c0; delay_0; gamma_x0];
@@ -15,9 +15,9 @@ models.mrac_model_e2y(params);
 
 %% steady staet for 7-3
 time = linspace(0, 89.99, 90000);
-k_x0 = [0.0183; 0.1];
+k_x0 = [0.06; 0.08];
 P_0 = [1.5; 3.5];
-gamma_x0 = [1; 1]/2;
+gamma_x0 = [2; 1]/3;
 omega_c0 = 3;
 delay_0 = 0.3;
 params = [k_x0; P_0; omega_c0; delay_0; gamma_x0];
@@ -34,9 +34,9 @@ ref_signal = timeseries(signal_73, time);
 models.mrac_model_e2y(params);
 %% steady state for 8-2
 time = linspace(0, 89.99, 90000);
-k_x0 = [0.0183; 0.1];
+k_x0 = [0.02; 0.11];
 P_0 = [1.5; 3.5];
-gamma_x0 = [1; 1]/2;
+gamma_x0 = [0.5; 0.2];
 omega_c0 = 3;
 delay_0 = 0.3;
 params = [k_x0; P_0; omega_c0; delay_0; gamma_x0];
@@ -55,7 +55,7 @@ models.mrac_model_e2y(params);
 time = linspace(0, 89.99, 90000);
 k_x0 = [22; 2]/100;
 P_0 = [1, 1];
-gamma_x0 = [6; 3];
+gamma_x0 = [2; 1];
 omega_c0 = 3.0;
 delay_0 = 0.3;
 params = [k_x0; P_0'; omega_c0; delay_0; gamma_x0];

@@ -26,3 +26,13 @@ octave-workspace
 
 # image folder
 images/
+.Rproj.user
+
+# data folder 
+data/
+
+slprj/
+results/
+mrac_pursuit_.slxc
+.vscode/
+src/.DS_Store
